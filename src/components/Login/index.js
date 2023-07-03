@@ -3,25 +3,25 @@ import { useForm } from "react-hook-form";
 import style from "./style.module.css";
 import { getUserByEmail } from "../../api";
 import { useDispatch } from "react-redux";
-import { setIsAuth } from "../../redux/slices/user";
+import { useNavigate } from "react-router-dom";
+import { setIsAuth, setUserData } from "../../redux/slices/user";
 
 const Login = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm();
 
   const onFormSubmit = async (data) => {
-    console.log(true);
-
     const { email } = data;
     const user = await getUserByEmail(email);
     if (!user) return;
     dispatch(setIsAuth());
-    reset();
+    dispatch(setUserData(user));
+    navigate("/home");
   };
   const onErrors = (errors) => console.error(errors);
 
