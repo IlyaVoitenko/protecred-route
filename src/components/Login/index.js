@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import style from "./style.module.css";
-import { getUser } from "../../api";
+import { getUserByEmail } from "../../api";
 import { useDispatch } from "react-redux";
 import { setIsAuth } from "../../redux/slices/user";
 
@@ -10,16 +10,18 @@ const Login = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
   const onFormSubmit = async (data) => {
-    const { email } = data;
-    const user = await getUser(email);
-    if (!user) return;
+    console.log(true);
 
+    const { email } = data;
+    const user = await getUserByEmail(email);
+    if (!user) return;
     dispatch(setIsAuth());
-    console.log(user);
+    reset();
   };
   const onErrors = (errors) => console.error(errors);
 

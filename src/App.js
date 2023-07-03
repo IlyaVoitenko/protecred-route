@@ -1,6 +1,6 @@
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import ProtectedRoute from "./utils/ProtectedRoute";
+import ProtectedRoutes from "./utils/ProtectedRoutes";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import SingUp from "./components/SingUp";
@@ -11,7 +11,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route element={<ProtectedRoute />}>
+          <Route element={<ProtectedRoutes />}>
             <Route path="/home" element={<Home />} />
           </Route>
           <Route path="/" element={<Login />} />

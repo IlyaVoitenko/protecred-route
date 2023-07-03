@@ -1,11 +1,11 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { getUser } from "../../redux/selectors";
+import { getUserAuthenticated } from "../../redux/selectors";
 import { Navigate, Outlet } from "react-router-dom";
 
 const ProtectedRoute = () => {
-  const user = useSelector(getUser);
-  console.log(user);
+  const user = useSelector(getUserAuthenticated);
+  console.log(" isAuthenticated :", user);
   return user.isAuthenticated ? <Outlet /> : <Navigate to="/" />;
 };
 
